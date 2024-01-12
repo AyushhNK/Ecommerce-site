@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+	<div class="flex items-center justify-center mt-36">
+		<div class="bg-blue-500 p-8 rounded-md shadow-md">
+		    <form method="POST" action="{% url 'log_in' %}" class="flex flex-col w-96 pt-8 pb-8">
+		    	<h1 class="text-center uppercase font-bold text-xl">login</h1>
+				{% csrf_token %}
+				{{form}}
+				<button type="submit" class="mt-6 bg-yellow-400 max-w-24 ml-36 p-2 rounded-full hover:bg-blue-300 hover:rounded-lg">submit</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

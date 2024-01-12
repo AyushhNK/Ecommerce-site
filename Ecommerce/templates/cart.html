@@ -1,0 +1,19 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+	<div class="container mx-auto flex flex-row flex-wrap mt-8">
+		{% for item in items %}
+		<div class="p-4 rounded-md shadow-md m-4  bg-blue-400 text-center">
+			<img src="{{ item.product.image.url }}" alt="Your Image" class="h-40 w-40">
+			<p>{{ item.product.name }}</p>
+			<p>${{ item.product.price }}</p>
+			<p>Quantity:{{item.quantity}}</p>
+			<form method="POST" action="{% url 'remove_cart' item.id %}">
+	            {% csrf_token %}
+	            <input type="submit" value="Remove from Cart" class="hover:font-bold">
+	        </form>
+    	</div>
+		{% endfor %}
+	</div>
+	<h1>your total price is :{{totaldue}}</h1>
+{% endblock %}
