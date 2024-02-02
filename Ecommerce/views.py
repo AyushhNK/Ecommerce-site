@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login,authenticate,logout
 from .forms import SignUpForm
@@ -62,7 +62,7 @@ def items_in_cart(request):
 	cart_items= CartItem.objects.filter(cart=user_cart)
 	total=0
 	for i in cart_items:
-		total=i.quantity*i.product.price
+		total+=i.quantity*i.product.price
 	return render(request,"cart.html",{"items":cart_items,"totaldue":total,"name":user})
 
 
@@ -77,4 +77,7 @@ def remove_from_cart(request, cart_item_id):
 		else:
 			item.delete()
 	return redirect("items_cart")
+
+def CheckoutView(request,totaldue):
+	return HttpResponse(totaldue)
 	

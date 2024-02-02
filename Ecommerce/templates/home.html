@@ -10,13 +10,14 @@
 			<p>{{ o.name }}</p>
 			<p>${{ o.price }}</p>
 			{% if name.is_authenticated %}
-			<form method="POST" action="{% url 'add_to_cart' o.id %}">
+			<form method="POST" action="{% url 'add_to_cart' o.id %}" id="cart-form">
 	            {% csrf_token %}
-	            <input type="submit" value="Add to Cart" class="hover:font-bold">
+	            <input type="submit" value="Add to Cart" class="hover:font-bold" id="cart">
 	        </form>
 	        {% endif %}
 	    </div>
 		{% endfor %}
 	    
 	</div>
+    </script>
 {% endblock %}

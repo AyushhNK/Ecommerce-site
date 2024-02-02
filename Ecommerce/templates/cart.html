@@ -16,4 +16,9 @@
 		{% endfor %}
 	</div>
 	<h1>your total price is :{{totaldue}}</h1>
+	<form method="POST" action="{% url 'checkout' totaldue%}">
+		{% csrf_token %}
+	    <input type="submit" value="Checkout" class="hover:font-bold">
+	</form>
+
 {% endblock %}
