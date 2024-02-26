@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Ecommerce</title>
-	<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ank.org - Your Ecommerce Destination</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-blue-100">
-	<nav class="flex justify-between bg-gradient-to-r from-blue-500 to-yellow-500 font-bold tracking-widest text-lg rounded-xl">
-		<div class="container mx-auto flex justify-between items-center">
-        <!-- Logo -->
-        <a href="{% url 'home' %}" class="text-white text-xl font-bold"><img src="/static/Ecommerce/ank.png" class="h-12 w-24 p-1"></a>
 
-        <!-- Navigation Links -->
-        <div class="space-x-4">
-	        {% if name.is_authenticated %}
-			<a href="{% url 'items_cart' %}" class="hover:text-blue-600">Your cart</a>
-			<a href="{% url 'log_out' %}" class="hover:text-blue-600">logout</a>
-			{% else %}
-			<a href="{% url 'log_in' %}" class="hover:text-blue-600">login</a>
-			<a href="{% url 'signup' %}" class="hover:text-blue-600">signup</a>
-			{% endif %}
+<body class="bg-blue-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold tracking-widest text-lg rounded-b-xl p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="{% url 'home' %}" class="text-xl font-bold flex items-center space-x-2">
+                <img src="/static/Ecommerce/ank.png" class="h-12 w-12 rounded-full" alt="Logo">
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="space-x-4">
+                {% if name.is_authenticated %}
+                <a href="{% url 'items_cart' %}" class="hover:text-pink-300">Your Cart</a>
+                <a href="{% url 'log_out' %}" class="hover:text-pink-300">Logout</a>
+                {% else %}
+                <a href="{% url 'log_in' %}" class="hover:text-pink-300">Login</a>
+                <a href="{% url 'signup' %}" class="hover:text-pink-300">Signup</a>
+                {% endif %}
+            </div>
         </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="flex-grow p-6 container mx-auto">
+
+        <!-- Left Div -->
+        <div class="p-6 mt-4 shadow-md bg-gradient-to-r from-pink-400 to-purple-400 rounded-lg text-white">
+            {% if name.is_authenticated %}
+            <h2 class="uppercase font-bold text-xl">Welcome back, {{ name }}!</h2>
+            {% else %}
+            <h2 class="uppercase font-bold text-xl">Welcome to Ank.org</h2>
+            {% endif %}
+        </div>
+
+        <!-- Page-specific content goes here -->
+        {% block content %}{% endblock %}
     </div>
-	</nav>
-	
 
-
-		<!-- Left Div -->
-		<div class="p-6 mt-2 shadow-md absolute right-0 top-12 bg-blue-400 rounded-full">
-			{% if name.is_authenticated %}
-			<h2 class="uppercase font-bold">{{name}}</h2>
-			{% else %}
-			<h2 class="uppercase font-bold">Welcome to the site</h2>
-			{% endif %}
-		</div>
-
-
-
-	
-	{% block content %}{% endblock %}
-
-	<footer class="fixed bottom-0 w-10/12 h-8 bg-gradient-to-r from-blue-500 to-yellow-500 text-center font-bold tracking-widest text-lg rounded-xl ml-32 mb-1">
-		<h1 class="text-center">©ank.org</h1>
-	</footer>
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold tracking-widest text-lg rounded-t-xl p-4 text-center">
+        <p>&copy; 2024 Ank.org</p>
+    </footer>
 </body>
+
 </html>

@@ -1,24 +1,33 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-	<div class="container mx-auto flex flex-row flex-wrap mt-8">
-		{% for item in items %}
-		<div class="p-4 rounded-md shadow-md m-4  bg-blue-400 text-center">
-			<img src="{{ item.product.image.url }}" alt="Your Image" class="h-40 w-40">
-			<p>{{ item.product.name }}</p>
-			<p>${{ item.product.price }}</p>
-			<p>Quantity:{{item.quantity}}</p>
-			<form method="POST" action="{% url 'remove_cart' item.id %}">
-	            {% csrf_token %}
-	            <input type="submit" value="Remove from Cart" class="hover:font-bold">
-	        </form>
-    	</div>
-		{% endfor %}
-	</div>
-	<h1>your total price is :{{totaldue}}</h1>
-	<form method="POST" action="{% url 'checkout' totaldue%}">
-		{% csrf_token %}
-	    <input type="submit" value="Checkout" class="hover:font-bold">
-	</form>
+<div class="container mx-auto mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {% for item in items %}
+        <div class="p-4 rounded-md shadow-md m-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="h-40 w-40 object-cover object-center rounded-md">
+            <p class="mt-2 font-semibold">{{ item.product.name }}</p>
+            <p class="text-gray-300">${{ item.product.price }}</p>
+            <p class="text-gray-300">Quantity: {{ item.quantity }}</p>
+            <form method="POST" action="{% url 'remove_cart' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="mt-2 px-4 py-2 bg-red-500 hover:bg-red-600 rounded-md focus:outline-none focus:shadow-outline-red">
+                    Remove from Cart
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
 
+    <div class="mt-8 text-xl font-bold text-purple-700">
+        Your total price is: ${{ totaldue }}
+    </div>
+
+    <form method="POST" action="{% url 'checkout' totaldue %}">
+        {% csrf_token %}
+        <button type="submit" class="mt-4 px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-md focus:outline-none focus:shadow-outline-purple">
+            Checkout
+        </button>
+    </form>
+</div>
 {% endblock %}

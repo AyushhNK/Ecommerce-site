@@ -2,22 +2,27 @@
 
 {% block content %}
 
-	<div class="container flex flex-row flex-wrap mt-8 ml-52">
-	    
-	    {% for o in objects %}
-	    <div class="p-4 rounded-md shadow-md m-4  bg-blue-400 text-center">
-			<img src="{{ o.image.url }}" alt="Your Image" class="h-40 w-40">
-			<p>{{ o.name }}</p>
-			<p>${{ o.price }}</p>
-			{% if name.is_authenticated %}
-			<form method="POST" action="{% url 'add_to_cart' o.id %}" id="cart-form">
-	            {% csrf_token %}
-	            <input type="submit" value="Add to Cart" class="hover:font-bold" id="cart">
-	        </form>
-	        {% endif %}
-	    </div>
-		{% endfor %}
-	    
-	</div>
-    </script>
+<div class="container mx-auto my-8 px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for o in objects %}
+        <div class="bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg overflow-hidden shadow-md m-4 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="{{ o.image.url }}" alt="{{ o.name }}" class="w-full h-40 object-cover object-center rounded-t-md">
+            <div class="p-4">
+                <p class="text-lg font-semibold text-white">{{ o.name }}</p>
+                <p class="text-gray-300">${{ o.price }}</p>
+                {% if name.is_authenticated %}
+                <form method="POST" action="{% url 'add_to_cart' o.id %}" id="cart-form">
+                    {% csrf_token %}
+                    <button type="submit"
+                        class="w-full mt-4 px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow">
+                        Add to Cart
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
