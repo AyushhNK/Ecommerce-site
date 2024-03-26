@@ -7,7 +7,6 @@ from .models import Product,Cart,CartItem
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
-# Create your views here.
 
 def home(request):
 	user=request.user
@@ -80,4 +79,7 @@ def remove_from_cart(request, cart_item_id):
 
 def CheckoutView(request,totaldue):
 	return HttpResponse(totaldue)
-	
+
+
+def index(request):
+    return render(request,"index.html")
