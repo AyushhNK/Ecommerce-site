@@ -6,57 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ank.org - Your Ecommerce Destination</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            overflow-x: hidden; /* Hides horizontal scrollbar */
+        }
+    </style>
 </head>
 
-<body class="bg-blue-100 min-h-screen flex flex-col font-sans">
+<body class="w-screen">
 
-    <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold tracking-widest text-lg rounded-b-xl p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        <!-- Logo -->
-        <a href="{% url 'home' %}" class="text-xl font-bold flex items-center space-x-2">
-            <img src="/static/Ecommerce/ank.png" class="h-12 w-12 rounded-full" alt="Logo">
-            <span class="ml-2">Your Brand Name</span>
-        </a>
+    <div class="min-h-screen w-full bg-cover flex flex-col items-center" style="background-image: url('/static/Ecommerce/background.png'); background-size: cover;">
+        <nav class="text-white font-bold text-lg items-center w-full">
+            <div class="container mx-auto flex justify-between items-center px-4">
+                <!-- Logo -->
+                <a href="{% url 'home' %}" class="text-xl font-bold flex items-center">
+                    <img src="/static/Ecommerce/logo.png" class="h-20 w-24 rounded-full" alt="Logo">
+                </a>
 
-        <!-- Navigation Links -->
-        <div class="flex space-x-4 items-center">
-            {% if name.is_authenticated %}
-            <a href="{% url 'items_cart' %}" class="hover:text-pink-300 flex items-center">
-                <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
-                <span class="font-semibold">Cart</span>
-            </a>
-            <a href="{% url 'log_out' %}" class="hover:text-pink-300 flex items-center">
-                <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg" alt="logout">
-                <span class="font-semibold">Logout</span>
-            </a>
-            {% else %}
-            <a href="{% url 'log_in' %}" class="hover:text-pink-300">Login</a>
-            <a href="{% url 'signup' %}" class="hover:text-pink-300">Signup</a>
-            {% endif %}
+                <!-- Navigation Links -->
+                <div class="flex space-x-4 items-center">
+                    {% if name.is_authenticated %}
+                    <a href="{% url 'items_cart' %}" class="hover:text-pink-300 flex items-center">
+                        <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
+                        <span class="font-semibold">Cart</span>
+                    </a>
+                    <a href="{% url 'log_out' %}" class="hover:text-pink-300 flex items-center">
+                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg" alt="logout">
+                        <span class="font-semibold">Logout</span>
+                    </a>
+                    {% else %}
+                    <div class="flex gap-7">
+                        <a href="{% url 'log_in' %}" class="hover:text-pink-300">Login</a>
+                        <a href="{% url 'signup' %}" class="hover:text-pink-300">Signup</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="text-white flex flex-col items-center gap-10 mt-20 sm:mt-40 md:mt-56 px-4">
+            <h1 class="text-4xl sm:text-6xl font-medium text-center">Our Summer Sale Is Finally Here</h1>
+            <p class="text-2xl sm:text-3xl">20% Off Site Wide</p>
+            <button class="items-center bg-white text-black text-xl font-medium rounded-3xl p-2 border border-solid-black" style="border-color: black;">Shop Now</button>
         </div>
     </div>
-</nav>
-
-
-    <!-- Content -->
-    <div class="flex-grow p-6 container mx-auto">
-
-        <!-- Left Div -->
-        <div class="p-6 mt-4 shadow-md bg-gradient-to-r from-pink-400 to-purple-400 rounded-lg text-white">
-            {% if name.is_authenticated %}
-            <h2 class="uppercase font-bold text-xl">Welcome back, {{ name }}!</h2>
-            {% else %}
-            <h2 class="uppercase font-bold text-xl">Welcome to Ank.org</h2>
-            {% endif %}
-        </div>
-
-        <!-- Page-specific content goes here -->
-        {% block content %}{% endblock %}
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold tracking-widest text-lg rounded-t-xl p-4 text-center">
+    {% block content %}{% endblock %}
+    <footer class="text-center py-4">
         <p>&copy; 2024 Ank.org</p>
     </footer>
 </body>

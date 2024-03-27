@@ -2,19 +2,19 @@
 
 {% block content %}
 
-<div class="container mx-auto my-8 px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+<div class="">
+    <div class="">
         {% for o in objects %}
-        <div class="bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg overflow-hidden shadow-md m-4 hover:shadow-lg transition duration-300 ease-in-out">
-            <img src="{{ o.image.url }}" alt="{{ o.name }}" class="w-full h-40 object-cover object-center rounded-t-md">
+        <div class="">
+            <img src="{{ o.image.url }}" alt="{{ o.name }}" class="">
             <div class="p-4">
-                <p class="text-lg font-semibold text-white">{{ o.name }}</p>
-                <p class="text-gray-300">${{ o.price }}</p>
+                <p class="">{{ o.name }}</p>
+                <p class="">${{ o.price }}</p>
                 {% if name.is_authenticated %}
                 <form method="POST" action="{% url 'add_to_cart' o.id %}" id="cart-form">
                     {% csrf_token %}
                     <button type="submit"
-                        class="w-full mt-4 px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow">
+                        class="">
                         Add to Cart
                     </button>
                 </form>

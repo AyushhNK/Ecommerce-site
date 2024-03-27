@@ -4,11 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <title>hello</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <h1>hello world</h1>
-    <div></div>
+    <div class="h-screen bg-cover flex flex-col items-center " style="background-image: url('/static/Ecommerce/background.png');">
+        <nav class="text-white font-bold tracking-widest text-lg items-center w-screen">
+            <div class="container mx-auto flex justify-between items-center">
+                <!-- Logo -->
+                <a href="{% url 'home' %}" class="text-xl font-bold flex items-center space-x-2">
+                    <img src="/static/Ecommerce/logo.png" class="h-20 w-24 rounded-full" alt="Logo">
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="flex space-x-4 items-center">
+                    {% if name.is_authenticated %}
+                    <a href="{% url 'items_cart' %}" class="hover:text-pink-300 flex items-center">
+                        <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
+                        <span class="font-semibold">Cart</span>
+                    </a>
+                    <a href="{% url 'log_out' %}" class="hover:text-pink-300 flex items-center">
+                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg" alt="logout">
+                        <span class="font-semibold">Logout</span>
+                    </a>
+                    {% else %}
+                    <div class="flex gap-7">
+                        <a href="{% url 'log_in' %}" class="hover:text-pink-300">Login</a>
+                        <a href="{% url 'signup' %}" class="hover:text-pink-300">Signup</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="text-white flex flex-col items-center gap-10 mt-56 ">
+            <h1 class="text-6xl font-medium">Our Summer Sale Is Finally Here</h1>
+            <p class="text-3xl">20% Off Site Wide</p>
+           	<button class="items-center bg-white text-black text-xl font-medium rounded-3xl p-2 border border-solid-black" style="border-color: black;">Shop Now</button>
+
+
+        </div>
+    </div>
 </body>
 
 </html>
