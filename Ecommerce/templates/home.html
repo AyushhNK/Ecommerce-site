@@ -1,28 +1,36 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-
-<div class="">
-    <div class="">
-        {% for o in objects %}
-        <div class="">
-            <img src="{{ o.image.url }}" alt="{{ o.name }}" class="">
-            <div class="p-4">
-                <p class="">{{ o.name }}</p>
-                <p class="">${{ o.price }}</p>
-                {% if name.is_authenticated %}
-                <form method="POST" action="{% url 'add_to_cart' o.id %}" id="cart-form">
-                    {% csrf_token %}
-                    <button type="submit"
-                        class="">
-                        Add to Cart
-                    </button>
-                </form>
-                {% endif %}
-            </div>
+    <div class="p-10 bg-red-600">
+        <div class="flex flex-wrap justify-around items-center gap-10">
+            {% for o in objects %}
+                <div class="flex flex-col justify-center items-center w-auto h-auto gap-5 p-5 bg-gray-800 rounded-lg md:flex-row">
+                    <div class="flex justify-center items-center w-28 h-28 bg-gradient-to-r from-green-400 to-[#002Ff9] rounded-lg hover:-translate-y-10 duration-700 hover:scale-125">
+                     <img src="{{ o.image.url }}" alt="{{ o.name }}" class="h-28 w-28 rounded-lg">
+                    </div>
+                    <div class="max-w-sm h-auto space-y-3">
+                      <div class="flex justify-center items-center sm:justify-between">
+                      <h2 class="text-white text-2xl font-bold tracking-widest">{{o.name}}</h2>
+                      </div>
+                      <p class="text-sm text-gray-200">Description: product information for sale.</p>
+                      <div class="flex gap-6 items-center justify-center">
+                        <p class="text-white font-bold text-lg">${{o.price}}</p>
+                        <p class="text-gray-300 font-semibold text-sm line-through">$320.00</p>
+                      </div>
+                      <div class="flex justify-around items-center my-2">
+                        <button class="px-2 bg-blue-600 p-1 rounded-md text-white font-semibold shadow-xl shadow-blue-500/50 hover:ring-2 ring-blue-400 hover:scale-75 duration-500">Buy Now</button>
+                        {% if name.is_authenticated %}
+                        <form method="POST" action="{% url 'add_to_cart' o.id %}" id="cart-form">
+                        {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ o.id }}">
+                                <button type="submit" class="px-2 border-2 border-white p-1 rounded-md text-white font-semibold shadow-lg shadow-white hover:scale-75 duration-500">Add to Cart</button>
+                        </form>
+                        {% endif %}
+                        
+                      </div>
+                    </div>
+                    </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
-
 {% endblock %}

@@ -3,9 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ank.org - Your Ecommerce Destination</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>ANK - Your Ecommerce Destination</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         *{
             margin:0;
@@ -45,7 +44,7 @@
                     <div class="flex gap-7">
                         <a href="#product" class="hover:text-red-600">About</a>
                         <a href="#product" class="hover:text-red-600">Products</a>
-                        <a href="{% url 'log_in' %}" class="hover:text-red-600">Login</a>
+                        <a href="{% url 'signin' %}" class="hover:text-red-600">Login</a>
                         <a href="{% url 'signup' %}" class="hover:text-red-600">Signup</a>
                     </div>
                     {% endif %}

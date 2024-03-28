@@ -8,42 +8,77 @@
 </head>
 
 <body>
-    <div class="h-screen bg-cover flex flex-col items-center " style="background-image: url('/static/Ecommerce/background.png');">
-        <nav class="text-white font-bold tracking-widest text-lg items-center w-screen">
-            <div class="container mx-auto flex justify-between items-center">
-                <!-- Logo -->
-                <a href="{% url 'home' %}" class="text-xl font-bold flex items-center space-x-2">
-                    <img src="/static/Ecommerce/logo.png" class="h-20 w-24 rounded-full" alt="Logo">
-                </a>
+    <div class="flex flex-col justify-center items-center w-auto h-auto gap-5 p-5 bg-gray-800 rounded-lg md:flex-row">
+<div class="flex justify-center items-center w-28 h-28 p-5 bg-gradient-to-r from-green-400 to-[#002Ff9] rounded-lg hover:-translate-y-10 duration-700 hover:scale-125">
+ <svg class="logo-svg" viewBox="0 0 29.667 31.69" xmlns="http://www.w3.org/2000/svg" fill="white">
+      <path transform="translate(0 0)" d="M12.827,1.628A1.561,1.561,0,0,1,14.31,0h2.964a1.561,1.561,0,0,1,1.483,1.628v11.9a9.252,9.252,0,0,1-2.432,6.852q-2.432,2.409-6.963,2.409T2.4,20.452Q0,18.094,0,13.669V1.628A1.561,1.561,0,0,1,1.483,0h2.98A1.561,1.561,0,0,1,5.947,1.628V13.191a5.635,5.635,0,0,0,.85,3.451,3.153,3.153,0,0,0,2.632,1.094,3.032,3.032,0,0,0,2.582-1.076,5.836,5.836,0,0,0,.816-3.486Z" data-name="Path 6" id="Path_6"></path>
+      <path transform="translate(-45.91 0)" d="M75.207,20.857a1.561,1.561,0,0,1-1.483,1.628h-2.98a1.561,1.561,0,0,1-1.483-1.628V1.628A1.561,1.561,0,0,1,70.743,0h2.98a1.561,1.561,0,0,1,1.483,1.628Z" data-name="Path 7" id="Path_7"></path>
+      <path transform="translate(0 -51.963)" d="M0,80.018A1.561,1.561,0,0,1,1.483,78.39h26.7a1.561,1.561,0,0,1,1.483,1.628v2.006a1.561,1.561,0,0,1-1.483,1.628H1.483A1.561,1.561,0,0,1,0,82.025Z" data-name="Path 8" id="Path_8"></path>
+    </svg>
+</div>
+<div class="max-w-sm h-auto space-y-3">
+  <div class="flex justify-center items-center sm:justify-between">
+  <h2 class="text-white text-2xl font-bold tracking-widest">Jesus Echeverria</h2>
+  <svg viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg" class="hidden sm:flex hover:scale-150 duration-300 fill-white cursor-pointer"><path d="M16 2v17.582l-4-3.512-4 3.512v-17.582h8zm2-2h-12v24l6-5.269 6 5.269v-24z"></path></svg>
+  </div>
+  <p class="text-sm text-gray-200">Description: product information for sale.</p>
+  <div class="flex gap-6 items-center justify-center">
+    <p class="text-white font-bold text-lg">$300.00</p>
+    <p class="text-gray-300 font-semibold text-sm line-through">$320.00</p>
+  </div>
+  <div class="flex justify-around items-center my-2">
+    <button class="px-2 bg-blue-600 p-1 rounded-md text-white font-semibold shadow-xl shadow-blue-500/50 hover:ring-2 ring-blue-400 hover:scale-75 duration-500">Buy Now</button>
+    <button class="px-2 border-2 border-white p-1 rounded-md text-white font-semibold shadow-lg shadow-white hover:scale-75 duration-500">Add to Cart</button>
+  </div>
+</div>
+</div>
 
-                <!-- Navigation Links -->
-                <div class="flex space-x-4 items-center">
-                    {% if name.is_authenticated %}
-                    <a href="{% url 'items_cart' %}" class="hover:text-pink-300 flex items-center">
-                        <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
-                        <span class="font-semibold">Cart</span>
-                    </a>
-                    <a href="{% url 'log_out' %}" class="hover:text-pink-300 flex items-center">
-                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg" alt="logout">
-                        <span class="font-semibold">Logout</span>
-                    </a>
-                    {% else %}
-                    <div class="flex gap-7">
-                        <a href="{% url 'log_in' %}" class="hover:text-pink-300">Login</a>
-                        <a href="{% url 'signup' %}" class="hover:text-pink-300">Signup</a>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </nav>
-        <div class="text-white flex flex-col items-center gap-10 mt-56 ">
-            <h1 class="text-6xl font-medium">Our Summer Sale Is Finally Here</h1>
-            <p class="text-3xl">20% Off Site Wide</p>
-           	<button class="items-center bg-white text-black text-xl font-medium rounded-3xl p-2 border border-solid-black" style="border-color: black;">Shop Now</button>
-
-
-        </div>
-    </div>
 </body>
 
 </html>
+
+
+<!-- 
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="p-10 bg-red-600">
+        <div class="flex flex-wrap justify-around items-center gap-10">
+            {% for o in objects %}
+                {% if name.is_authenticated %}
+                    <form id="cart-form" method="POST" action="{% url 'add_to_cart' o.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ o.id }}">
+                        <div class="relative overflow-hidden w-60 h-80 rounded-3xl cursor-pointer text-2xl font-bold bg-gray-600">
+                            <div class="z-10 absolute w-full h-full peer"></div>
+                            <div class="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full bg-yellow-300 transition-all duration-500"></div>
+                            <div class="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-10 w-36 h-44 rounded-full bg-yellow-300 transition-all duration-500">
+                                <div class="p-4 flex flex-col gap-10">
+                                    <div>
+                                        <p class="text-red-600">${{ o.price }}</p>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="items-center bg-red-600 text-white text-xl font-medium rounded-3xl p-2 border border-solid-black hover:bg-black" style="border-color: black;">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full h-full items-center justify-center flex uppercase">
+                                <div class="h-60 w-60 flex flex-col items-center">
+                                    <img src="{{ o.image.url }}" alt="{{ o.name }}" class="h-48 w-40 rounded-3xl">
+                                    <div class="p-4">
+                                        <p class="text-white">{{ o.name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %} -->
+
+
+
