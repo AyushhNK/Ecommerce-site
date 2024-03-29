@@ -1,10 +1,51 @@
-{% extends 'base_layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<div class="container mx-auto mt-8">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="overflow-x-hidden h-screen">
+<nav id="navbar" class="w-screen bg-gray-900 text-white font-bold text-lg items-center w-full">
+            <div class="container flex justify-between items-center px-4">
+                <!-- Logo -->
+                <div>
+                    <a href="{% url 'home' %}" class="text-xl font-bold flex items-center">
+                        <img src="/static/Ecommerce/logo.png" class="h-20 w-24 rounded-full" alt="Logo">
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center">
+                    {% if name.is_authenticated %}
+                    <a href="{% url 'items_cart' %}" class="hover:text-red-600 flex items-center">
+                        <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
+                        <span class="font-semibold">Cart</span>
+                    </a>
+                    <a href="{% url 'log_out' %}" class="hover:text-red-600 flex items-center">
+                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg" alt="logout">
+                        <span class="font-semibold">Logout</span>
+                    </a>
+                    {% else %}
+                    <div class="flex gap-7">
+                        <a href="#footer" class="hover:text-red-600">About</a>
+                        <a href="#product" class="hover:text-red-600">Products</a>
+                        <a href="{% url 'signin' %}" class="hover:text-red-600">Login</a>
+                        <a href="{% url 'signup' %}" class="hover:text-red-600">Signup</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+
+
+<div class="bg-red-600 w-screen p-2">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {% for item in items %}
-        <div class="p-4 rounded-md shadow-md m-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center">
+        <div class="p-4 rounded-md shadow-md m-4 bg-gray-900 text-white text-center">
             <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="h-40 w-40 object-cover object-center rounded-md">
             <p class="mt-2 font-semibold">{{ item.product.name }}</p>
             <p class="text-gray-300">${{ item.product.price }}</p>
@@ -30,4 +71,33 @@
         </button>
     </form>
 </div>
-{% endblock %}
+<footer id="footer">
+    <div class="bg-gray-900 flex flex-col mb-0">
+            <h1 class="text-white font-medium text-3xl mt-2 text-center">Get In Touch</h1>
+            <div class="flex flex-col md:flex-row justify-around">
+                <div class="flex flex-col w-full md:w-[385px] text-white">
+                    <label htmlFor="name" class="pt-1">Name</label>
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer"/>
+                    <label htmlFor="email" class="pt-1">Email</label>
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer"/>
+                    <label htmlFor="subject" class="pt-1">Subject</label>
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer"/>
+                    <label htmlFor="message" class="pt-1">Message</label>
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer pt-2"/>
+                    <button class="bg-red-600 mt-2 px-2 py-2 text-white">Send</button>
+                </div>
+                <div class="w-full md:w-1/3 flex flex-col mt-4 md:mt-0 gap-2">
+                    <p class="text-white text-2xl text-center">Contact Information</p>
+                    <p class="text-white md:text-base text-left">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada gravida libero at tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In ac rutrum urna.
+                    </p>
+                    <a href="#" class="text-white flex"><MdLocationPin class="text-white text-xl"/> Kalanki, Kathmandu, Nepal</a>
+              <a href="#" class="text-white flex"><IoIosMail class="text-white text-xl"/>testing@testing.com</a>
+              <a href="#" class="text-white flex"><FaPhoneAlt class="text-white text-xl"/>+977 9376745784</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
