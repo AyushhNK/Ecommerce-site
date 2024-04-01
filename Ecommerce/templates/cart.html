@@ -18,14 +18,14 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="flex items-center">
+                <div class="flex items-center gap-8">
                     {% if name.is_authenticated %}
                     <a href="{% url 'items_cart' %}" class="hover:text-red-600 flex items-center">
                         <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
                         <span class="font-semibold">Cart</span>
                     </a>
                     <a href="{% url 'log_out' %}" class="hover:text-red-600 flex items-center">
-                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg" alt="logout">
+                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg mr-3" alt="logout">
                         <span class="font-semibold">Logout</span>
                     </a>
                     {% else %}
@@ -60,13 +60,13 @@
         {% endfor %}
     </div>
 
-    <div class="mt-8 text-xl font-bold text-purple-700">
+    <div class="mt-8 text-xl font-bold text-gray-800">
         Your total price is: ${{ totaldue }}
     </div>
 
     <form method="POST" action="{% url 'checkout' totaldue %}">
         {% csrf_token %}
-        <button type="submit" class="mt-4 px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-md focus:outline-none focus:shadow-outline-purple">
+        <button type="submit" class="mt-4 px-6 py-3 bg-gray-800 hover:bg-purple-600 text-white rounded-md focus:outline-none focus:shadow-outline-purple">
             Checkout
         </button>
     </form>
