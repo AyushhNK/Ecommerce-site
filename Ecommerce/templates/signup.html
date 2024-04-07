@@ -3,89 +3,80 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="flex justify-center items-center h-screen bg-red-600">
-<div class="max-w-lg w-full ">
-  <div
-    style="box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);"
-    class="bg-gray-800 rounded-lg shadow-xl overflow-hidden"
-  >
-    <div class="p-8">
-      <h2 class="text-center text-3xl font-extrabold text-white">
-        Welcome
-      </h2>
-      <p class="mt-4 text-center text-gray-400">Sign up to continue</p>
-      <form method="POST" action="{% url 'signup' %}" class="mt-8 space-y-6">
-        {% csrf_token %} 
-        <div class="rounded-md shadow-sm">
-          <div>
-            <label class="sr-only" for="Username">Username</label>
-            <input
-              placeholder="Username"
-              class="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              required=""
-              type="text"
-              name="username"
-              id="Username"
-            />
-          </div>
-          <div class="mt-4">
-            <label class="sr-only" for="email">Email</label>
-            <input
-              placeholder="Email"
-              class="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              required=""
-              type="email"
-              name="email"
-              id="email"
-            />
-          </div>
-          <div class="mt-4">
-            <label class="sr-only" for="password">Password</label>
-            <input
-              placeholder="Password"
-              class="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              required=""
-              autocomplete="current-password"
-              type="password"
-              name="password"
-              id="password"
-            />
-          </div>
-          <div class="mt-4">
-            <label class="sr-only" for="password">Confirm Password</label>
-            <input
-              placeholder="Confirm Password"
-              class="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              required=""
-              type="password"
-              name="password2"
-              id="password2"
-            />
-          </div>
+    <div class="max-w-md w-full mx-4">
+        <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-center text-2xl md:text-3xl font-extrabold text-white">
+                    Welcome
+                </h2>
+                <p class="mt-2 text-center text-gray-400">Sign up to continue</p>
+                <form method="POST" action="{% url 'signup' %}" class="mt-4 space-y-4">
+                    {% csrf_token %}
+                    <div class="rounded-md shadow-sm">
+                        <label class="sr-only" for="Username">Username</label>
+                        <input
+                            placeholder="Username"
+                            class="appearance-none relative block w-full px-4 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-base"
+                            required=""
+                            type="text"
+                            name="username"
+                            id="Username"
+                        />
+                    </div>
+                    <div class="rounded-md shadow-sm">
+                        <label class="sr-only" for="email">Email</label>
+                        <input
+                            placeholder="Email"
+                            class="appearance-none relative block w-full px-4 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-base"
+                            required=""
+                            type="email"
+                            name="email"
+                            id="email"
+                        />
+                    </div>
+                    <div class="rounded-md shadow-sm">
+                        <label class="sr-only" for="password">Password</label>
+                        <input
+                            placeholder="Password"
+                            class="appearance-none relative block w-full px-4 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-base"
+                            required=""
+                            autocomplete="current-password"
+                            type="password"
+                            name="password"
+                            id="password"
+                        />
+                    </div>
+                    <div class="rounded-md shadow-sm">
+                        <label class="sr-only" for="password2">Confirm Password</label>
+                        <input
+                            placeholder="Confirm Password"
+                            class="appearance-none relative block w-full px-4 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-base"
+                            required=""
+                            type="password"
+                            name="password2"
+                            id="password2"
+                        />
+                    </div>
+                    <button
+                        class="w-full py-3 px-4 border border-transparent text-base font-medium rounded-md text-gray-900 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        type="submit"
+                    >
+                        Sign Up
+                    </button>
+                </form>
+            </div>
+            <div class="px-6 py-3 bg-gray-700 text-center">
+                <span class="text-gray-400">Already have an account?</span>
+                <a class="font-medium text-indigo-500 hover:text-indigo-400" href="/signin">Sign in</a>
+            </div>
         </div>
-
-        <div>
-          <button
-            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-gray-900 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            type="submit"
-          >
-            Sign Up
-          </button>
-        </div>
-      </form>
     </div>
-    <div class="px-8 py-4 bg-gray-700 text-center">
-      <span class="text-gray-400">Already have an account?</span>
-      <a class="font-medium text-indigo-500 hover:text-indigo-400" href="/signin"
-        >Sign in</a
-      >
-    </div>
-  </div>
-</div>
 </body>
 
 </html>

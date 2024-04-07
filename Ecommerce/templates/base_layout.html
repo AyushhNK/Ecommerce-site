@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANK - Your Ecommerce Destination</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -15,76 +16,80 @@
         body {
             overflow-x: hidden;
         }
+
+        /* Additional custom styles can be added here */
     </style>
 </head>
 
-<body>
-
-    <div class="h-screen w-screen flex flex-col items-center" style="background-image: url('/static/Ecommerce/background.jpg'); background-size: cover;">
-    <nav id="navbar" class="bg-transparent text-white font-bold text-lg items-center w-full mb-40">
-        <div class="container flex justify-between items-center px-4">
-            <!-- Logo -->
-            <div>
-                <a href="{% url 'home' %}" class="text-xl font-bold flex items-center">
-                    <img src="/static/Ecommerce/logo.png" class="h-20 w-24 rounded-full" alt="Logo">
-                </a>
-            </div>
-
-            <!-- Navigation Links -->
-            <div class="flex items-center gap-8">
-                {% if name.is_authenticated %}
-                <a href="{% url 'items_cart' %}" class="hover:text-red-600 flex items-center">
-                    <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-10 w-10 rounded-full mr-3" alt="Cart Icon">
-                    <span class="font-semibold">Cart</span>
-                </a>
-                <a href="{% url 'log_out' %}" class="hover:text-red-600 flex items-center">
-                    <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-10 w-10 rounded-lg mr-3" alt="logout">
-                    <span class="font-semibold">Logout</span>
-                </a>
-                {% else %}
-                <div class="hidden md:flex gap-7">
-                    <a href="#footer" class="hover:text-red-600">About</a>
-                    <a href="#product" class="hover:text-red-600">Products</a>
-                    <a href="{% url 'signin' %}" class="hover:text-red-600">Login</a>
-                    <a href="{% url 'signup' %}" class="hover:text-red-600">Signup</a>
+<body class="text-white">
+    <div  style="background-image: url('/static/Ecommerce/background.jpg'); background-size: cover;">
+        <nav id="navbar" class="bg-transparent text-white font-bold text-lg">
+            <div class="container flex justify-between items-center px-4 py-2">
+                <!-- Logo -->
+                <div>
+                    <a href="{% url 'home' %}" class="text-xl font-bold flex items-center">
+                        <img src="/static/Ecommerce/logo.png" class="h-16 w-auto rounded-full" alt="Logo">
+                    </a>
                 </div>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-    <div class="text-yellow-200 flex flex-col justify-center items-center gap-10 px-4">
-        <h1 class="text-6xl font-medium text-center">Our Summer Sale Is Finally Here</h1>
-        <p class="text-3xl">20% Off Site Wide</p>
-        <button class="items-center bg-red-600 text-black text-xl font-medium rounded-3xl p-2 border border-solid-black" style="border-color: black;"><a href="#product" class="hover:text-white">Shop Now</a></button>
-    </div>
-</div>
 
-    <div id="product">
+                <!-- Navigation Links -->
+                <div class="flex items-center gap-4">
+                    {% if name.is_authenticated %}
+                    <a href="{% url 'items_cart' %}" class="hover:text-red-600 flex items-center">
+                        <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-8 w-8 rounded-full mr-2" alt="Cart Icon">
+                        <span class="font-semibold">Cart</span>
+                    </a>
+                    <a href="{% url 'log_out' %}" class="hover:text-red-600 flex items-center">
+                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-8 w-8 rounded-lg mr-2" alt="logout">
+                        <span class="font-semibold">Logout</span>
+                    </a>
+                    {% else %}
+                    <div class="md:flex gap-8">
+                        <!-- <a href="#footer" class="hover:text-red-600">About</a> -->
+                        <a href="#product" class="hover:text-red-600">Products</a>
+                        <a href="{% url 'signin' %}" class="hover:text-red-600">Login</a>
+                        <a href="{% url 'signup' %}" class="hover:text-red-600">Signup</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <div class="flex flex-col justify-center items-center gap-6 px-4 py-16">
+            <h1 class="text-4xl md:text-6xl font-medium text-center">Our Summer Sale Is Finally Here</h1>
+            <p class="text-xl md:text-3xl">20% Off Site Wide</p>
+            <button class="bg-red-600 text-black text-lg md:text-xl font-medium rounded-full px-4 py-2 border border-solid-black hover:text-white hover:bg-red-700"><a href="#product">Shop Now</a></button>
+        </div>
+    </div>
+    <div id="product" class="flex flex-wrap justify-center">
         {% block content %}{% endblock %}
     </div>
-    <footer id="footer">
-        <div class="bg-gray-900 flex flex-col mb-0">
-            <h1 class="text-white font-medium text-3xl mt-2 text-center">Get In Touch</h1>
-            <div class="flex flex-col md:flex-row justify-around">
-                <div class="flex flex-col w-full md:w-[385px] text-white">
+
+    <footer id="footer" class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto">
+            <h1 class="text-xl md:text-3xl font-medium mt-2 text-center">Get In Touch</h1>
+            <div class="flex flex-col md:flex-row justify-center items-center md:justify-between">
+                <div class="flex flex-col w-full md:w-[50%] md:max-w-[385px] text-white mt-4 md:mt-0">
                     <label htmlFor="name" class="pt-1">Name</label>
-                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer" />
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer mb-2" />
                     <label htmlFor="email" class="pt-1">Email</label>
-                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer" />
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer mb-2" />
                     <label htmlFor="subject" class="pt-1">Subject</label>
-                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer" />
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer mb-2" />
                     <label htmlFor="message" class="pt-1">Message</label>
-                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer pt-2" />
-                    <button class="bg-red-600 mt-2 px-2 py-2 text-white">Send</button>
+                    <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer mb-4" />
+                    <button class="bg-red-600 px-4 py-2 text-white rounded-full hover:bg-red-700">Send</button>
                 </div>
-                <div class="w-full md:w-1/3 flex flex-col mt-4 md:mt-0 gap-2">
-                    <p class="text-white text-2xl text-center">Contact Information</p>
-                    <p class="text-white md:text-base text-left">
+                <div class="w-full md:w-[50%] md:max-w-[385px] flex flex-col mt-4 md:mt-0 gap-2">
+                    <p class="text-xl md:text-2xl text-center">Contact Information</p>
+                    <p class="text-lg md:text-base text-center md:text-left">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada gravida libero at tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In ac rutrum urna.
                     </p>
-                    <a href="#" class="text-white flex"><MdLocationPin class="text-white text-xl" /> Kalanki, Kathmandu, Nepal</a>
-                    <a href="#" class="text-white flex"><IoIosMail class="text-white text-xl" />testing@testing.com</a>
-                    <a href="#" class="text-white flex"><FaPhoneAlt class="text-white text-xl" />+977 9376745784</a>
+                    <div class="flex flex-col items-center md:flex-row gap-2">
+                        <a href="#" class="flex items-center"><span class="text-xl md:text-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg></span> Kalanki, Kathmandu, Nepal</a>
+                        <a href="#" class="flex items-center"><span class="text-xl md:text-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3zm2 3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1.586a1 1 0 0 1-.293.707l-4.5 4.5a1 1 0 0 1-1.414 0l-4.5-4.5A1 1 0 0 1 5 5.586V5z" clip-rule="evenodd" /></svg></span> testing@testing.com</a>
+                        <a href="#" class="flex items-center"><span class="text-xl md:text-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fill-rule="evenodd" d="M4 3a1 1 0 011-1h2.85a2 2 0 011.487.688l1.578 1.895a2 2 0 002.925 0L14.663 2.69A2 2 0 0117.15 2H20a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V3zm11 2.754V16h-2v-1h-2v1H6V5.754l1.895 2.274a4 4 0 005.21 0L15 5.753zM4 18a1 1 0 011-1h10a1 1 0 011 1v1H4v-1z" clip-rule="evenodd" /></svg></span> +977 9376745784</a>
+                    </div>
                 </div>
             </div>
         </div>
