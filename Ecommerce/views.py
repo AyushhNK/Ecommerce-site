@@ -5,6 +5,8 @@ from .forms import SignUpForm
 from .models import Product, Cart, CartItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import requests
+import json
 
 def home(request):
     user = request.user
@@ -75,7 +77,32 @@ def remove_from_cart(request, cart_item_id):
     return redirect("items_cart")
 
 def CheckoutView(request, totaldue):
-    return HttpResponse(totaldue)
+    url = "https://a.khalti.com/api/v2/epayment/initiate/"
+
+    data={
+        "return_url": "http://example.com/",
+        "website_url": "https://example.com/",
+        "amount": "1000", 
+        "purchase_order_id": "Order01",
+        "purchase_order_name": "test",
+        "customer_info": {
+            "name": "ayush",
+            "email": "test@khalti.com",
+            "phone": "9800000001"
+        }
+    }
+
+    payload = json.dumps(data)
+    headers = {
+        'Authorization': 'Key live_secret_key_68791341fdd94846a146f0457ff7b455',
+        'Content-Type': 'application/json',
+    }
+
+    response = requests.post(url, headers=headers, data=payload)
+    if response.status_code == 200:
+        response_data = response.json()
+        payment_url = response_data.get('payment_url')
+        return redirect(payment_url)
 
 def index(request):
     return render(request, "index.html")

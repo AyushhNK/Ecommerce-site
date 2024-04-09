@@ -33,15 +33,19 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-10">
                     {% if name.is_authenticated %}
+                    <a href="#" class="hover:text-red-600 flex flex-col items-center">
+                        <img src="/static/Ecommerce/avatar.png" class="h-8 w-8" alt="logout">
+                        <span class="font-semibold">{{name}}</span>
+                    </a>
                     <a href="{% url 'items_cart' %}" class="hover:text-red-600 flex items-center">
-                        <img src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-shopping-cart-convenient-icon-png-image_4637407.jpg" class="h-8 w-8 rounded-full mr-2" alt="Cart Icon">
-                        <span class="font-semibold">Cart</span>
+                        <img src="/static/Ecommerce/cart.png" class="h-10 w-10 rounded-full mr-2" alt="Cart Icon">
+                        <!-- <span class="font-semibold">Cart</span> -->
                     </a>
                     <a href="{% url 'log_out' %}" class="hover:text-red-600 flex items-center">
-                        <img src="https://w7.pngwing.com/pngs/475/85/png-transparent-computer-icons-logout-angle-text-black.png" class="h-8 w-8 rounded-lg mr-2" alt="logout">
-                        <span class="font-semibold">Logout</span>
+                        <img src="/static/Ecommerce/logout.png" class="h-8 w-8 rounded-lg mr-2" alt="logout">
+                        <!-- <span class="font-semibold">Logout</span> -->
                     </a>
                     {% else %}
                     <div class="md:flex gap-8">
@@ -66,7 +70,7 @@
     </div>
 
     <footer id="footer" class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-5">
             <h1 class="text-xl md:text-3xl font-medium mt-2 text-center">Get In Touch</h1>
             <div class="flex flex-col md:flex-row justify-center items-center md:justify-between">
                 <div class="flex flex-col w-full md:w-[50%] md:max-w-[385px] text-white mt-4 md:mt-0">
@@ -80,7 +84,7 @@
                     <input type="text" class="bg-gray-900 border-b-2 border-gray-500 focus:outline-none cursor-pointer mb-4" />
                     <button class="bg-red-600 px-4 py-2 text-white rounded-full hover:bg-red-700">Send</button>
                 </div>
-                <div class="w-full md:w-[50%] md:max-w-[385px] flex flex-col mt-4 md:mt-0 gap-2">
+                <div class="w-full md:w-[50%] md:max-w-[500px] flex flex-col mt-4 md:mt-0 gap-2">
                     <p class="text-xl md:text-2xl text-center">Contact Information</p>
                     <p class="text-lg md:text-base text-center md:text-left">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada gravida libero at tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In ac rutrum urna.
