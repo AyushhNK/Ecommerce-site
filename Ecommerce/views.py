@@ -7,11 +7,26 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import requests
 import json
+from django.db.models import Q
+
+# def home(request):
+#     user = request.user
+#     obj = Product.objects.all()
+#     return render(request, "home.html", {"name": user, "objects": obj})
 
 def home(request):
     user = request.user
-    obj = Product.objects.all()
-    return render(request, "home.html", {"name": user, "objects": obj})
+    query = request.GET.get('q')
+    
+    if query:
+        if query=="all":
+            obj = Product.objects.all()
+        obj = Product.objects.filter(
+            Q(name__icontains=query)
+        )
+    else:
+        obj = Product.objects.all()    
+    return render(request, "home.html", {"name": user, "objects": obj, "query": query})
 
 def signin(request):
     if request.method == 'POST':
@@ -80,9 +95,9 @@ def CheckoutView(request, totaldue):
     url = "https://a.khalti.com/api/v2/epayment/initiate/"
 
     data={
-        "return_url": "http://example.com/",
-        "website_url": "https://example.com/",
-        "amount": "1000", 
+        "return_url": "http://localhost:8000/",
+        "website_url": "http://localhost:8000/",
+        "amount": f"{totaldue*1000}", 
         "purchase_order_id": "Order01",
         "purchase_order_name": "test",
         "customer_info": {
